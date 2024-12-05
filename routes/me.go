@@ -38,7 +38,7 @@ func CreateToken(c *fiber.Ctx) error {
 
 	setRTCookie(c, RT, expires)
 
-	return c.JSON(fiber.Map{
+	return c.Status(201).JSON(fiber.Map{
 		"token": T,
 	})
 }
@@ -73,7 +73,7 @@ func RefreshToken(c *fiber.Ctx) error {
 
 	setRTCookie(c, RT, expires)
 
-	return c.JSON(fiber.Map{
+	return c.Status(200).JSON(fiber.Map{
 		"token": t,
 	})
 }

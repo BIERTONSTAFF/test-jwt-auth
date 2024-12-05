@@ -48,19 +48,19 @@ func CreateToken(DB *gorm.DB, userID uuid.UUID, IP string, expires int64) (strin
 	return t, RT, nil
 }
 
-func RefreshToken(db *gorm.DB, userID uuid.UUID, claims jwt.MapClaims, rt string, IP string) error {
-	if claims["sub"].(string) != rt {
+func RefreshToken(DB *gorm.DB, userID uuid.UUID, claims jwt.MapClaims, RT string, IP string) error {
+	if claims["sub"].(string) != RT {
 		return fmt.Errorf("refresh token does not belong to this token")
 	}
 
 	validRTs := []models.RefreshToken{}
-	if err := db.Where("user_id = ? AND valid = ?", userID, true).Find(&validRTs).Error; err != nil {
+	if err := DB.Where("user_id = ? AND valid = ?", userID, true).Find(&validRTs).Error; err != nil {
 		return fmt.Errorf("failed to retrieve valid tokens")
 	}
 
 	var matchedRT *models.RefreshToken
 	for i := range validRTs {
-		if utils.CompareToken(validRTs[i].Token, rt) {
+		if utils.CompareToken(validRTs[i].Token, RT) {
 			matchedRT = &validRTs[i]
 
 			break
@@ -72,7 +72,7 @@ func RefreshToken(db *gorm.DB, userID uuid.UUID, claims jwt.MapClaims, rt string
 	}
 
 	matchedRT.Valid = false
-	if err := db.Save(&matchedRT).Error; err != nil {
+	if err := DB.Save(&matchedRT).Error; err != nil {
 		return fmt.Errorf("failed to invalidate refresh token")
 	}
 
