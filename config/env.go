@@ -6,6 +6,7 @@ import (
 )
 
 var (
+	DSN               = getEnv("DSN")
 	SMTPHost          = getEnv("SMTP_HOST")
 	SMTPEmail         = getEnv("SMTP_EMAIL")
 	SMTPPassword      = getEnv("SMTP_PASSWORD")

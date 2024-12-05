@@ -1,8 +1,7 @@
 package main
 
 import (
-	"os"
-
+	c "desq.com.ru/testjwtauth/config"
 	"desq.com.ru/testjwtauth/models"
 
 	"gorm.io/driver/postgres"
@@ -10,7 +9,7 @@ import (
 )
 
 func initDB() (*gorm.DB, error) {
-	db, err := gorm.Open(postgres.Open(os.Getenv("DSN")), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(c.DSN), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
