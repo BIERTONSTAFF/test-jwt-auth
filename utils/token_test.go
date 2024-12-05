@@ -39,20 +39,22 @@ func TestEncodeToken(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    string
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "EncodeToken",
+			args: args{
+				token: "iVyY6dlHyll9djUGuAxWnO97aEXmPTeGFaSuh5xf1LY=",
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := EncodeToken(tt.args.token)
+			_, err := EncodeToken(tt.args.token)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("EncodeToken() error = %v, wantErr %v", err, tt.wantErr)
 				return
-			}
-			if got != tt.want {
-				t.Errorf("EncodeToken() = %v, want %v", got, tt.want)
 			}
 		})
 	}
