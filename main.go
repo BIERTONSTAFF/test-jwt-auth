@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	db, err := initDB()
+	DB, err := initDB()
 	if err != nil {
 		log.Fatalf("Failed to estabilish database connection: %v", err)
 	}
@@ -19,7 +19,7 @@ func main() {
 	app := fiber.New()
 
 	app.Use(func(c *fiber.Ctx) error {
-		c.Locals("db", db)
+		c.Locals("db", DB)
 
 		return c.Next()
 	})
