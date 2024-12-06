@@ -17,12 +17,20 @@ func TestNotifyEmail(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "NotifyEmail",
+			name: "WithValidEmail",
 			args: args{
-				m: "127.0.0.1",
+				m: "TestNotifyEmail",
 				r: config.MockSMTPRecipient,
 			},
 			wantErr: false,
+		},
+		{
+			name: "WithInvalidEmail",
+			args: args{
+				m: "TestNotifyEmail",
+				r: "",
+			},
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {

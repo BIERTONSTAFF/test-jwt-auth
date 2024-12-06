@@ -14,7 +14,7 @@ func TestGenerateToken(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "GenerateValidRefreshToken",
+			name: "GenerateRefreshToken",
 			args: args{
 				l: 32,
 			},
@@ -33,6 +33,10 @@ func TestGenerateToken(t *testing.T) {
 }
 
 func TestEncodeToken(t *testing.T) {
+	token, err := GenerateToken(32)
+	if err != nil {
+		t.Fatalf("Failed to generate refresh token")
+	}
 	type args struct {
 		token string
 	}
@@ -44,7 +48,7 @@ func TestEncodeToken(t *testing.T) {
 		{
 			name: "EncodeToken",
 			args: args{
-				token: "iVyY6dlHyll9djUGuAxWnO97aEXmPTeGFaSuh5xf1LY=",
+				token: token,
 			},
 			wantErr: false,
 		},
