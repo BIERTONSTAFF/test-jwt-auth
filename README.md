@@ -41,4 +41,4 @@ $ docker run --name testjwtauth \
 testjwtauth
 ```
 ## Example of IP changed warning
-<img width="1030" alt="Screenshot 2024-12-07 at 1 19 16 PM" src="https://github.com/user-attachments/assets/5f7dc112-e64b-4022-a3ba-c5ac21ab2bc0">
+<img width="704" alt="Screenshot 2024-12-07 at 1 26 09 PM" src="https://github.com/user-attachments/assets/e0792f75-5a81-4b38-a3a7-29ab763d8c76">
